@@ -1,4 +1,4 @@
-// Wizard The Deep Cleaning Service - Homepage JavaScript (Green & White Theme)
+// UrbanDeepCleanCompany - Homepage JavaScript (Green & White Theme)
 
 // Mobile Menu Functionality
 class MobileMenu {
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new TestimonialsCarousel();
     new ScrollAnimations();
     
-    console.log('Wizard The Deep Cleaning Service - Homepage Loaded (Green Theme)');
+    console.log('UrbanDeepCleanCompany - Homepage Loaded (Green Theme)');
 });
 
 // Export for potential module use
