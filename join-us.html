@@ -12,99 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="index.html">
-                        <img src="https://via.placeholder.com/60x60/22c55e/ffffff?text=U" alt="UrbanDeepCleanCompany Logo" class="logo-img">
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="about-us.html" class="nav-link">About Us</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="services.html" class="nav-link dropdown-toggle">
-                            Our Services
-                            <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a href="services/full-home-deep-cleaning.html" class="dropdown-item">Full Home Deep Cleaning</a>
-                            <a href="services/full-kitchen-cleaning.html" class="dropdown-item">Kitchen Cleaning</a>
-                            <a href="services/full-bathroom-cleaning.html" class="dropdown-item">Bathroom Cleaning</a>
-                            <a href="services/sofa-carpet-mattress-cleaning.html" class="dropdown-item">Sofa & Carpet Cleaning</a>
-                            <a href="services/commercial-area-cleaning.html" class="dropdown-item">Commercial Cleaning</a>
-                            <a href="services/parking-area-cleaning.html" class="dropdown-item">Parking Area Cleaning</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="join-us.html" class="nav-link active">Join Us</a>
-                    </li>
-                </ul>
-                
-                <div class="nav-cta">
-                    <a href="contact-us.html" class="cta-button">
-                        Get Free Quote
-                        <svg class="cta-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
-            </div>
-        </nav>
-        
-        <!-- Mobile Navigation -->
-        <div class="mobile-menu">
-            <div class="mobile-menu-header">
-                <div class="mobile-logo">
-                    <img src="https://via.placeholder.com/50x50/22c55e/ffffff?text=U" alt="UrbanDeepCleanCompany Logo">
-                </div>
-                <button class="mobile-menu-close">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-            <ul class="mobile-nav-menu">
-                <li><a href="index.html" class="mobile-nav-link">Home</a></li>
-                <li><a href="about-us.html" class="mobile-nav-link">About Us</a></li>
-                <li class="mobile-dropdown">
-                    <button class="mobile-dropdown-toggle">
-                        Our Services
-                        <svg class="mobile-dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div class="mobile-dropdown-menu">
-                        <a href="services/full-home-deep-cleaning.html" class="mobile-dropdown-item">Full Home Deep Cleaning</a>
-                        <a href="services/full-kitchen-cleaning.html" class="mobile-dropdown-item">Kitchen Cleaning</a>
-                        <a href="services/full-bathroom-cleaning.html" class="mobile-dropdown-item">Bathroom Cleaning</a>
-                        <a href="services/sofa-carpet-mattress-cleaning.html" class="mobile-dropdown-item">Sofa & Carpet Cleaning</a>
-                        <a href="services/commercial-area-cleaning.html" class="mobile-dropdown-item">Commercial Cleaning</a>
-                        <a href="services/parking-area-cleaning.html" class="mobile-dropdown-item">Parking Area Cleaning</a>
-                    </div>
-                </li>
-                <li><a href="join-us.html" class="mobile-nav-link active">Join Us</a></li>
-                <li><a href="contact-us.html" class="mobile-nav-link mobile-cta">Get Free Quote</a></li>
-            </ul>
-        </div>
-    </header>
+    <!-- Navbar will be loaded by JavaScript -->
 
     <!-- Main Content -->
     <main class="main">
@@ -510,6 +418,7 @@
         </div>
     </footer>
 
+    <script src="components/navbar.js"></script>
     <script src="join-us.js"></script>
 </body>
 </html>
