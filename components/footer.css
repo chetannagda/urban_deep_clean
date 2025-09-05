@@ -249,9 +249,9 @@
         gap: 30px; /* Reduced gap */
     }
     
+    /* Hide Quick Links and Services sections on mobile for cleaner look */
     .footer-links {
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
+        display: none;
     }
     
     .footer-title {

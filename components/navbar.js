@@ -134,40 +134,47 @@ class NavbarComponent {
     }
 
     initializeDropdowns() {
-        // Desktop dropdown
-        const desktopDropdown = document.getElementById('servicesDropdown');
-        const desktopMenu = document.getElementById('servicesMenu');
-        
-        if (desktopDropdown && desktopMenu) {
-            // Prevent default link behavior - dropdown only, no redirect
-            desktopDropdown.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggleDropdown(desktopDropdown.parentElement, desktopMenu);
-            });
+        // Wait a bit to ensure DOM is fully loaded
+        setTimeout(() => {
+            // Desktop dropdown
+            const desktopDropdown = document.getElementById('servicesDropdown');
+            const desktopMenu = document.getElementById('servicesMenu');
+            
+            if (desktopDropdown && desktopMenu) {
+                // Prevent default link behavior - dropdown only, no redirect
+                desktopDropdown.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.toggleDropdown(desktopDropdown.parentElement, desktopMenu);
+                });
 
-            // Show dropdown on hover
-            const dropdownContainer = desktopDropdown.parentElement;
-            dropdownContainer.addEventListener('mouseenter', () => {
-                this.showDropdown(dropdownContainer, desktopMenu);
-            });
+                // Show dropdown on hover
+                const dropdownContainer = desktopDropdown.parentElement;
+                dropdownContainer.addEventListener('mouseenter', () => {
+                    this.showDropdown(dropdownContainer, desktopMenu);
+                });
 
-            dropdownContainer.addEventListener('mouseleave', () => {
-                this.hideDropdown(dropdownContainer, desktopMenu);
-            });
-        }
+                dropdownContainer.addEventListener('mouseleave', () => {
+                    this.hideDropdown(dropdownContainer, desktopMenu);
+                });
+            }
 
-        // Mobile dropdown
-        const mobileDropdown = document.getElementById('mobileServicesDropdown');
-        const mobileMenu = document.getElementById('mobileServicesMenu');
-        
-        if (mobileDropdown && mobileMenu) {
-            mobileDropdown.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggleMobileDropdown(mobileDropdown.parentElement, mobileMenu);
-            });
-        }
+            // Mobile dropdown - ensure it's working
+            const mobileDropdown = document.getElementById('mobileServicesDropdown');
+            const mobileMenu = document.getElementById('mobileServicesMenu');
+            
+            if (mobileDropdown && mobileMenu) {
+                console.log('Mobile dropdown elements found and initializing...');
+                mobileDropdown.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Mobile dropdown clicked');
+                    this.toggleMobileDropdown(mobileDropdown.parentElement, mobileMenu);
+                });
+            } else {
+                console.log('Mobile dropdown elements not found:', { mobileDropdown, mobileMenu });
+            }
+        }, 100);
     }
 
     toggleDropdown(container, menu) {
@@ -205,13 +212,17 @@ class NavbarComponent {
         const mobileClose = document.getElementById('mobileMenuClose');
         
         if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
+            mobileToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 this.toggleMobileMenu(mobileMenu);
             });
         }
 
         if (mobileClose && mobileMenu) {
-            mobileClose.addEventListener('click', () => {
+            mobileClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 this.closeMobileMenu(mobileMenu);
             });
         }
@@ -220,8 +231,17 @@ class NavbarComponent {
         const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-item');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                this.closeMobileMenu(mobileMenu);
+                setTimeout(() => {
+                    this.closeMobileMenu(mobileMenu);
+                }, 100);
             });
+        });
+
+        // Close menu when pressing escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+                this.closeMobileMenu(mobileMenu);
+            }
         });
     }
 
@@ -236,6 +256,12 @@ class NavbarComponent {
     }
 
     openMobileMenu(menu) {
+        // Remove any existing overlay first
+        const existingOverlay = document.querySelector('.mobile-menu-overlay');
+        if (existingOverlay) {
+            existingOverlay.remove();
+        }
+
         menu.classList.add('active');
         document.body.style.overflow = 'hidden';
         
@@ -246,16 +272,26 @@ class NavbarComponent {
             this.closeMobileMenu(menu);
         });
         document.body.appendChild(overlay);
+
+        // Add animation class after a brief delay
+        setTimeout(() => {
+            menu.classList.add('menu-animate');
+        }, 10);
     }
 
     closeMobileMenu(menu) {
-        menu.classList.remove('active');
+        menu.classList.remove('active', 'menu-animate');
         document.body.style.overflow = '';
         
         // Remove overlay
         const overlay = document.querySelector('.mobile-menu-overlay');
         if (overlay) {
-            overlay.remove();
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    overlay.remove();
+                }
+            }, 300);
         }
     }
 
