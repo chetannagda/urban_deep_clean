@@ -98,6 +98,47 @@ class JoinUsPage {
         });
 
         // Handle form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (this.validateForm(form)) {
+                // Get all form values
+                const formData = {
+                    fullName: form.querySelector('#fullName').value,
+                    phoneNumber: form.querySelector('#phoneNumber').value,
+                    email: form.querySelector('#email').value,
+                    address: form.querySelector('#address').value,
+                    position: form.querySelector('#position').value,
+                    experience: form.querySelector('#experience').value,
+                    workingHours: form.querySelector('#workingHours').value,
+                    hearAboutUs: form.querySelector('#hearAboutUs').value,
+                    whyJoinUs: form.querySelector('#whyJoinUs').value
+                };
+
+                // Format the message for WhatsApp
+                const message = `*New Job Application*%0A
+--------------------------------%0A
+*Full Name:* ${formData.fullName}%0A
+*Phone Number:* ${formData.phoneNumber}%0A
+*Email:* ${formData.email}%0A
+*Address:* ${formData.address}%0A
+*Position:* ${formData.position}%0A
+*Experience:* ${formData.experience}%0A
+*Working Hours:* ${formData.workingHours}%0A
+*Source:* ${formData.hearAboutUs}%0A
+*Why Join Us:* ${formData.whyJoinUs}%0A
+--------------------------------`;
+
+                // WhatsApp link with pre-filled message
+                const whatsappLink = `https://wa.me/918209129975?text=${message}`;
+
+                // Open WhatsApp in a new window
+                window.open(whatsappLink, '_blank');
+
+                // Reset the form
+                form.reset();
+            }
+        });
         form.addEventListener('submit', (e) => this.handleFormSubmit(e));
 
         // Phone number formatting
@@ -269,7 +310,6 @@ class JoinUsPage {
         e.preventDefault();
         
         const form = e.target;
-        const formData = new FormData(form);
         const submitButton = form.querySelector('.submit-button');
         
         // Validate all fields
@@ -295,43 +335,61 @@ class JoinUsPage {
             <svg class="submit-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M10 2V6M10 14V18M18 10H14M6 10H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            Submitting...
+            Preparing your application...
         `;
         
         try {
-            // Simulate form submission (replace with actual API call)
-            await this.submitApplication(formData);
+            // Get form data
+            const formData = {
+                fullName: form.querySelector('#fullName').value,
+                phoneNumber: form.querySelector('#phoneNumber').value,
+                email: form.querySelector('#email').value,
+                address: form.querySelector('#address').value,
+                position: form.querySelector('#position').value,
+                experience: form.querySelector('#experience').value,
+                workingHours: form.querySelector('#workingHours').value,
+                hearAboutUs: form.querySelector('#hearAboutUs').value,
+                whyJoinUs: form.querySelector('#whyJoinUs').value
+            };
+
+            // Format the message for WhatsApp
+            const message = `New Job Application
+
+--------------------------------
+Full Name: ${formData.fullName}
+Phone Number: ${formData.phoneNumber}
+Email: ${formData.email}
+Address: ${formData.address}
+Position: ${formData.position}
+Experience: ${formData.experience}
+Working Hours: ${formData.workingHours}
+Source: ${formData.hearAboutUs}
+Why Join Us: ${formData.whyJoinUs}
+--------------------------------`;
+
+            // Properly encode the message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappLink = `https://wa.me/918209129975?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new window
+            window.open(whatsappLink, '_blank');
             
             // Show success message
-            this.showMessage('Thank you for your application! We have received your details and will contact you soon for the next steps.', 'success');
-            form.reset();
+            this.showMessage('Your application has been prepared and opened in WhatsApp. Please review and send the message to complete your application.', 'success');
             
-            // Clear any saved form data
+            // Reset the form and clear saved data
+            form.reset();
             localStorage.removeItem('joinUsFormData');
             
         } catch (error) {
             console.error('Form submission error:', error);
-            this.showMessage('Sorry, there was an error submitting your application. Please try again or contact us directly.', 'error');
+            this.showMessage('Sorry, there was an error preparing your application. Please try again or contact us directly.', 'error');
         } finally {
             // Reset button state
             submitButton.classList.remove('loading');
             submitButton.disabled = false;
             submitButton.innerHTML = originalHTML;
         }
-    }
-
-    async submitApplication(formData) {
-        // Simulate API call - replace with actual endpoint
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simulate success/failure
-                if (Math.random() > 0.1) { // 90% success rate
-                    resolve({ success: true });
-                } else {
-                    reject(new Error('Network error'));
-                }
-            }, 2000);
-        });
     }
 
     showMessage(message, type) {
