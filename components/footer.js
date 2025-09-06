@@ -8,12 +8,6 @@ class FooterComponent {
     }
 
     async loadFooter() {
-        if (document.body.dataset.footerLoaded === 'true') {
-            console.log('Footer already loaded, skipping.');
-            return;
-        }
-        document.body.dataset.footerLoaded = 'true';
-
         try {
             // Determine the correct path based on current page location
             const currentPath = window.location.pathname;
@@ -125,11 +119,6 @@ class FooterComponent {
 }
 
 // Initialize footer when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new FooterComponent();
-});
-
-// Also initialize if DOM is already loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         new FooterComponent();

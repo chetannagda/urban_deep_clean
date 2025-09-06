@@ -385,6 +385,12 @@ img {
     border-color: var(--color-primary);
 }
 
+/* Special style for the view services button */
+.hero-actions .btn-outline {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
 .btn-outline:hover {
     background-color: var(--color-primary);
     color: var(--color-white);
@@ -800,6 +806,7 @@ img {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    position: relative;
 }
 
 .testimonial-card {
@@ -850,6 +857,31 @@ img {
     font-size: 3rem;
     color: var(--color-primary);
     opacity: 0.3;
+}
+
+/* Carousel Navigation Dots */
+.carousel-dots {
+    display: none;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-gray-300);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-timing);
+}
+
+.carousel-dot.active {
+    background-color: var(--color-primary);
+}
+
+.carousel-dot:hover {
+    background-color: var(--color-primary);
 }
 
 /* Contact Section */
@@ -1257,14 +1289,30 @@ img {
     }
     
     .testimonials-carousel {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-snap-type: x mandatory;
         gap: 1.25rem;
+        padding: 0 1rem;
+        margin: 0 -1rem;
+    }
+    
+    .testimonials-carousel::-webkit-scrollbar {
+        display: none;
     }
     
     .testimonial-card {
+        flex: 0 0 85%;
+        max-width: 320px;
         padding: 1.25rem;
-        max-width: 380px;
-        margin: 0 auto;
+        margin: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
     }
     
     .testimonial-text {
@@ -1275,6 +1323,10 @@ img {
     
     .testimonial-author {
         font-size: var(--text-sm);
+    }
+    
+    .carousel-dots {
+        display: flex;
     }
     
     /* Contact Section Mobile */

@@ -6,27 +6,34 @@
 }
 
 .footer-main {
-    padding: 60px 0 40px;
+    padding: 40px 0;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 40px;
+    grid-template-columns: 320px minmax(300px, 2fr) 320px;
+    gap: 30px;
     align-items: start;
+    justify-content: space-between;
 }
 
 /* Company Info Section */
 .footer-section.company-info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .company-details {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+}
+
+.company-info .logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 5px;
 }
 
 .footer-logo img {
@@ -45,24 +52,20 @@
     margin: 0;
 }
 
-.image-credit {
-    font-size: 12px;
-    color: #888888;
-    margin: 0;
-}
 
 /* Links Section */
 .footer-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 30px;
+    padding: 0 15px;
 }
 
 .footer-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #ffffff;
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0;
     text-transform: capitalize;
 }
 
@@ -72,7 +75,7 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .footer-link {
@@ -91,42 +94,45 @@
 .footer-section.contact-info {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
 .contact-details {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
 }
 
 .contact-icon {
     flex-shrink: 0;
     color: #22c55e;
     margin-top: 2px;
+    width: 24px;
 }
 
 .contact-icon svg {
     fill: currentColor;
+    width: 20px;
+    height: 20px;
 }
 
 .contact-item p {
     margin: 0;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.4;
     color: #cccccc;
 }
 
 .phone-numbers {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .phone-link {
@@ -144,11 +150,12 @@
 .social-section {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+    margin-top: 5px;
 }
 
 .social-title {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #ffffff;
     margin: 0;
@@ -156,15 +163,15 @@
 
 .social-links {
     display: flex;
-    gap: 15px;
+    gap: 12px;
 }
 
 .social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background-color: #333333;
     border-radius: 8px;
     color: #cccccc;
@@ -179,6 +186,17 @@
 }
 
 .social-link svg {
+    fill: currentColor;
+    width: 20px;
+    height: 20px;
+}
+
+.social-link.gmail-link svg {
+    width: 22px;
+    height: 22px;
+}
+
+.social-link svg path {
     fill: currentColor;
 }
 
@@ -224,102 +242,165 @@
 /* Tablet Styles */
 @media (max-width: 1024px) {
     .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 280px 1fr;
+        gap: 25px;
     }
     
     .footer-section.contact-info {
         grid-column: 1 / -1;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     
     .footer-links {
-        gap: 30px;
+        gap: 20px;
+        padding: 0;
+    }
+
+    .company-info .logo {
+        width: 100px;
     }
 }
 
 /* Mobile Styles - Compact Design */
 @media (max-width: 768px) {
     .footer-main {
-        padding: 40px 0 30px; /* Reduced padding for mobile */
+        padding: 30px 0 25px; /* Optimized padding for mobile */
     }
     
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 30px; /* Reduced gap */
+        gap: 25px; /* Optimized gap */
+        text-align: center; /* Center all content on mobile */
     }
     
-    /* Hide Quick Links and Services sections on mobile for cleaner look */
+    /* Center company info section */
+    .footer-section.company-info {
+        text-align: center;
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-logo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .company-info .logo {
+        width: 120px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .company-details {
+        align-items: center;
+    }
+    
+    /* Hide Quick Links and Services sections on mobile */
     .footer-links {
         display: none;
-    }
-    
-    .footer-title {
-        font-size: 15px;
-        margin-bottom: 15px; /* Reduced margin */
-    }
-    
-    .footer-list {
-        gap: 10px; /* Reduced gap between links */
-    }
-    
-    .footer-link {
-        font-size: 13px; /* Smaller font size */
     }
     
     .company-description {
         font-size: 13px;
         line-height: 1.5;
+        text-align: center;
+        margin: 0 10px; /* Add side margins for better readability */
+    }
+    
+    /* Center contact info section with proper alignment */
+    .footer-section.contact-info {
+        text-align: center;
     }
     
     .contact-details {
-        gap: 15px; /* Reduced gap */
+        gap: 18px; /* Optimized gap */
+        align-items: center;
+        margin: 0 15px; /* Add side margins */
     }
     
     .contact-item {
-        gap: 10px;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: row; /* Ensure horizontal layout */
+    }
+    
+    .contact-icon {
+        flex-shrink: 0;
+        color: #22c55e;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contact-icon svg {
+        fill: currentColor;
+        width: 18px;
+        height: 18px;
     }
     
     .contact-item p,
     .phone-link {
-        font-size: 13px; /* Smaller font size */
+        font-size: 13px; /* Optimized font size */
+        text-align: center;
+        margin: 0;
+    }
+    
+    .phone-numbers {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .social-section {
-        gap: 12px; /* Reduced gap */
+        gap: 15px; /* Optimized gap */
+        text-align: center;
+        margin-top: 10px;
     }
     
     .social-title {
-        font-size: 13px;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 8px;
     }
     
     .social-links {
-        gap: 12px; /* Reduced gap between social icons */
+        gap: 15px; /* Better spacing between social icons */
+        justify-content: center; /* Center social icons */
+        flex-wrap: wrap; /* Allow wrapping if needed */
     }
     
     .social-link {
-        width: 36px; /* Smaller social icons */
-        height: 36px;
+        width: 40px; /* Slightly larger for better touch targets */
+        height: 40px;
     }
     
     .social-link svg {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
     
     .footer-bottom {
-        padding: 15px 0; /* Reduced padding */
+        padding: 18px 0; /* Optimized padding */
+        margin-top: 5px;
     }
     
     .footer-bottom-content {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: 8px;
     }
     
     .copyright,
     .developer-credit {
-        font-size: 12px; /* Smaller font size */
+        font-size: 12px; /* Optimized font size */
     }
 }
 
@@ -374,11 +455,49 @@
         width: 18px;
         height: 18px;
     }
+}
+
+/* Updated Social Link Styles */
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 2px solid #22c55e;
+    border-radius: 50%;
+    color: #22c55e;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: #22c55e;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Specific styles for each social platform */
+.facebook-link svg {
+    width: 11px;
+}
+
+.instagram-link svg {
+    width: 18px;
+}
     
     .container {
         padding: 0 15px; /* Reduced container padding */
     }
-}
+
 
 /* Dark theme adjustments */
 @media (prefers-color-scheme: dark) {

@@ -251,47 +251,206 @@ class SmoothScroll {
     }
 }
 
-// Testimonials Carousel (Simple Auto-scroll)
+// Enhanced Testimonials Carousel with Touch Support
 class TestimonialsCarousel {
     constructor() {
         this.carousel = document.getElementById('testimonialsCarousel');
         this.cards = this.carousel ? this.carousel.querySelectorAll('.testimonial-card') : [];
+        this.dots = document.getElementById('carouselDots');
+        this.dotElements = this.dots ? this.dots.querySelectorAll('.carousel-dot') : [];
         this.currentIndex = 0;
         this.autoScrollInterval = null;
+        this.isMobile = window.innerWidth <= 768;
+        
+        // Touch support variables
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        this.isScrolling = false;
         
         this.init();
+        this.bindEvents();
     }
     
     init() {
-        if (this.cards.length > 1) {
+        if (this.cards.length > 1 && this.isMobile) {
+            this.setupMobileCarousel();
             this.startAutoScroll();
-            
-            // Pause on hover
-            if (this.carousel) {
-                this.carousel.addEventListener('mouseenter', () => this.stopAutoScroll());
-                this.carousel.addEventListener('mouseleave', () => this.startAutoScroll());
+        } else if (this.cards.length > 1) {
+            // Desktop fallback - simple opacity change
+            this.startAutoScroll();
+        }
+        
+        this.updateDots();
+    }
+    
+    setupMobileCarousel() {
+        // Set up scroll snap positions
+        this.cards.forEach((card, index) => {
+            card.style.scrollSnapAlign = 'center';
+        });
+    }
+    
+    bindEvents() {
+        if (!this.carousel) return;
+        
+        // Touch events for mobile swiping
+        this.carousel.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+        this.carousel.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+        this.carousel.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+        
+        // Mouse events for desktop
+        this.carousel.addEventListener('mouseenter', () => this.stopAutoScroll());
+        this.carousel.addEventListener('mouseleave', () => this.startAutoScroll());
+        
+        // Scroll event to update dots based on current position
+        this.carousel.addEventListener('scroll', () => this.updateDotsOnScroll());
+        
+        // Dot click events
+        this.dotElements.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
+        });
+        
+        // Window resize event to reinitialize on orientation change
+        window.addEventListener('resize', () => this.handleResize());
+    }
+    
+    handleTouchStart(e) {
+        this.touchStartX = e.touches[0].clientX;
+        this.stopAutoScroll();
+    }
+    
+    handleTouchMove(e) {
+        if (!this.touchStartX) return;
+        this.touchEndX = e.touches[0].clientX;
+    }
+    
+    handleTouchEnd(e) {
+        if (!this.touchStartX || !this.touchEndX) return;
+        
+        const touchDiff = this.touchStartX - this.touchEndX;
+        const minSwipeDistance = 50;
+        
+        if (Math.abs(touchDiff) > minSwipeDistance) {
+            if (touchDiff > 0) {
+                // Swipe left - next slide
+                this.nextSlide();
+            } else {
+                // Swipe right - previous slide
+                this.prevSlide();
             }
+        }
+        
+        // Reset touch values
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        
+        // Restart auto scroll after a delay
+        setTimeout(() => this.startAutoScroll(), 3000);
+    }
+    
+    handleResize() {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile !== this.isMobile) {
+            this.isMobile = newIsMobile;
+            this.stopAutoScroll();
+            this.init();
         }
     }
     
     startAutoScroll() {
+        if (this.autoScrollInterval) {
+            clearInterval(this.autoScrollInterval);
+        }
+        
         this.autoScrollInterval = setInterval(() => {
             this.nextSlide();
-        }, 5000);
+        }, 4000); // 4 seconds as requested
     }
     
     stopAutoScroll() {
         if (this.autoScrollInterval) {
             clearInterval(this.autoScrollInterval);
+            this.autoScrollInterval = null;
         }
     }
     
     nextSlide() {
         if (this.cards.length === 0) return;
         
-        this.cards[this.currentIndex].style.opacity = '0.5';
         this.currentIndex = (this.currentIndex + 1) % this.cards.length;
-        this.cards[this.currentIndex].style.opacity = '1';
+        this.scrollToSlide(this.currentIndex);
+        this.updateDots();
+    }
+    
+    prevSlide() {
+        if (this.cards.length === 0) return;
+        
+        this.currentIndex = (this.currentIndex - 1 + this.cards.length) % this.cards.length;
+        this.scrollToSlide(this.currentIndex);
+        this.updateDots();
+    }
+    
+    goToSlide(index) {
+        if (index < 0 || index >= this.cards.length) return;
+        
+        this.currentIndex = index;
+        this.scrollToSlide(this.currentIndex);
+        this.updateDots();
+        
+        // Stop auto scroll briefly when user interacts
+        this.stopAutoScroll();
+        setTimeout(() => this.startAutoScroll(), 3000);
+    }
+    
+    scrollToSlide(index) {
+        if (!this.carousel || !this.cards[index]) return;
+        
+        if (this.isMobile) {
+            // For mobile, scroll to the card position
+            const cardWidth = this.cards[index].offsetWidth;
+            const cardMargin = 20; // Account for gap
+            const scrollLeft = index * (cardWidth + cardMargin);
+            
+            this.carousel.scrollTo({
+                left: scrollLeft,
+                behavior: 'smooth'
+            });
+        } else {
+            // For desktop, use opacity effect
+            this.cards.forEach((card, i) => {
+                card.style.opacity = i === index ? '1' : '0.5';
+                card.style.transform = i === index ? 'translateY(0)' : 'translateY(10px)';
+            });
+        }
+    }
+    
+    updateDotsOnScroll() {
+        if (!this.isMobile || this.isScrolling) return;
+        
+        this.isScrolling = true;
+        setTimeout(() => {
+            this.isScrolling = false;
+            
+            // Calculate which slide is currently most visible
+            const scrollLeft = this.carousel.scrollLeft;
+            const cardWidth = this.cards[0] ? this.cards[0].offsetWidth + 20 : 0; // Include gap
+            const newIndex = Math.round(scrollLeft / cardWidth);
+            
+            if (newIndex !== this.currentIndex && newIndex >= 0 && newIndex < this.cards.length) {
+                this.currentIndex = newIndex;
+                this.updateDots();
+            }
+        }, 100);
+    }
+    
+    updateDots() {
+        this.dotElements.forEach((dot, index) => {
+            if (index === this.currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
     }
 }
 
