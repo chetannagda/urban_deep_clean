@@ -27,10 +27,16 @@
         </section>
 
         <!-- Hero Section -->
-        <section class="service-hero">
-            <div class="hero-container">
-                <h1 class="hero-title">Full Kitchen Cleaning Service</h1>
-                <p class="hero-description">Transform your kitchen into a spotless, hygienic cooking space with our comprehensive deep cleaning service. We clean every appliance, surface, and corner to perfection.</p>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-image">
+                        <img src="../assets/kitchen1.jpg" 
+                             alt="Professional kitchen cleaning service" 
+                             class="hero-img">
+                        <h1 class="hero-title">Full Kitchen Cleaning Service</h1>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -38,60 +44,139 @@
         <section class="service-details">
             <div class="details-container">
                 <h2 class="section-title">What's Included in Our Kitchen Cleaning</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Deep cleaning of all kitchen appliances including refrigerator, oven, microwave, and dishwasher</span>
+                <div class="features-accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header active">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Kitchen Appliances</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content show">
+                            <p>Deep cleaning of all kitchen appliances including refrigerator, oven, microwave, and dishwasher</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Thorough cleaning and sanitizing of countertops, backsplash, and all surfaces</span>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Surfaces and Countertops</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Thorough cleaning and sanitizing of countertops, backsplash, and all surfaces</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Cabinet cleaning inside and outside, including handles and hardware</span>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Cabinets</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Cabinet cleaning inside and outside, including handles and hardware</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Sink and faucet deep cleaning with descaling and polishing</span>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Sink and Faucets</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Sink and faucet deep cleaning with descaling and polishing</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Stovetop and range hood cleaning with grease removal</span>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Stovetop and Hood</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Stovetop and range hood cleaning with grease removal</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Floor cleaning and mopping with specialized kitchen floor cleaners</span>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Floor Cleaning</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Floor cleaning and mopping with specialized kitchen floor cleaners</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Trash can cleaning and sanitizing with odor elimination</span>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Trash Management</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Trash can cleaning and sanitizing with odor elimination</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Light fixture and ceiling fan cleaning for complete hygiene</span>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Light Fixtures</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Light fixture and ceiling fan cleaning for complete hygiene</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span class="feature-text">Window and glass cleaning for crystal clear visibility</span>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Windows and Glass</span>
+                            <svg class="accordion-arrow" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Window and glass cleaning for crystal clear visibility</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,7 +209,6 @@
                     </div>
                     
                     <div class="pricing-card">
-                        <div class="popular-badge">Most Popular</div>
                         <h3 class="plan-name">Deep Clean Pro</h3>
                         <div class="plan-price">₹2,999</div>
                         <p class="plan-duration">One-time service</p>
@@ -178,8 +262,8 @@
                 <h2 class="cta-title">Ready for a Spotless Kitchen?</h2>
                 <p class="cta-description">Book our professional kitchen cleaning service today and enjoy cooking in a pristine, hygienic environment.</p>
                 <div class="cta-buttons">
-                    <a href="tel:+919876543210" class="cta-button primary">
-                        📞 Call Now: +91 98765 43210
+                    <a href="tel:+918209129975" class="cta-button primary">
+                        📞 Call Now: +91 82091 29975
                     </a>
                     <a href="../contact-us.html" class="cta-button secondary">
                         📧 Get Free Quote
